@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | KopyKitaab Tutor Network</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Open Sans"', 'sans-serif'],
+                        heading: ['"Montserrat"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',
+                            primary: '#2563eb',
+                            accent: '#06b6d4',
+                            light: '#f8fafc',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Loading Popup Overlay */
+        #loader-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #2563eb;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-brand-light font-sans text-slate-700 antialiased">
+
+    <div id="loader-overlay">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl text-center max-w-xs w-full mx-4">
+            <div class="spinner mx-auto mb-4"></div>
+            <h3 class="font-heading font-bold text-xl text-slate-900">Verifying Details</h3>
+            <p class="text-slate-500 mt-2">Please wait for 5 seconds...</p>
+        </div>
+    </div>
+
+    <div class="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-64 h-64 bg-blue-100 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 opacity-60"></div>
+        <div class="absolute bottom-0 right-0 w-64 h-64 bg-cyan-100 rounded-full blur-3xl translate-x-1/2 translate-y-1/2 opacity-60"></div>
+
+        <div class="max-w-md w-full relative z-10">
+            <div class="text-center mb-8">
+                <a href="index.html" class="inline-flex items-center gap-2">
+                    <i class="ph-fill ph-book-open-text text-3xl text-brand-primary"></i>
+                    <span class="font-heading font-extrabold text-2xl tracking-tight text-slate-900">Kopy<span class="text-brand-primary">Kitaab</span></span>
+                </a>
+                <p class="text-slate-500 mt-2 font-medium">Tutor Registration - Step 1/2</p>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl shadow-xl border border-white">
+                <form id="registrationForm" action="https://api.web3forms.com/submit" method="POST">
+                    
+                    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                    <input type="hidden" name="subject" value="New Tutor Registration Lead">
+                    <input type="hidden" name="from_name" value="KopyKitaab Leads">
+
+                    <div class="space-y-5">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Full Name *</label>
+                            <input type="text" name="name" required placeholder="Enter your full name" 
+                                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-primary focus:border-brand-primary outline-none transition">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Email ID *</label>
+                            <input type="email" name="email" required placeholder="example@gmail.com" 
+                                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-primary focus:border-brand-primary outline-none transition">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Phone Number *</label>
+                            <input type="tel" name="phone" required placeholder="+91 XXXXX XXXXX" 
+                                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-primary focus:border-brand-primary outline-none transition">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1 ml-1">Coupon Code (Optional)</label>
+                            <div class="relative">
+                                <input type="text" id="coupon_code" name="coupon_code" placeholder="e.g. FLAT100" 
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-accent focus:border-brand-accent outline-none transition uppercase">
+                                <i class="ph ph-ticket absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl"></i>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full bg-brand-primary hover:bg-blue-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-500/30 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+                            Proceed to Form <i class="ph-bold ph-arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <p class="text-center mt-6 text-sm text-slate-400">
+                &copy; 2025 KopyKitaab. All data is encrypted and secure.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('registrationForm');
+        const loader = document.getElementById('loader-overlay');
+        const couponInput = document.getElementById('coupon_code');
+
+        // Logic for redirection links
+        const DEFAULT_FORM_URL = "https://your-main-form-link.com"; 
+        const DISCOUNTED_FORM_URL = "https://your-discounted-form-link.com";
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show the 5-second popup
+            loader.style.display = 'flex';
+
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            // 1. Send data to Web3Forms
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let jsonResponse = await response.json();
+                if (response.status == 200) {
+                    console.log("Lead captured successfully");
+                } else {
+                    console.log("Error capturing lead");
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+            // 2. Wait 5 seconds then redirect
+            setTimeout(() => {
+                const couponValue = couponInput.value.trim().toUpperCase();
+                
+                if (couponValue === "FLAT100") {
+                    window.location.href = DISCOUNTED_FORM_URL;
+                } else {
+                    window.location.href = DEFAULT_FORM_URL;
+                }
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
